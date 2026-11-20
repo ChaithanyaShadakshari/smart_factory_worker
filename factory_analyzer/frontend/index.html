@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EFFICIENCY ANALYZER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- SECTION 1 HEADER -->
+    <header class="header">
+      <div class="logo-box">
+        <span class="icon">⚡</span>
+        <h1>EFFICIENCY ANALYZER</h1>
+      </div>
+      <h2>IMU → Agent → Excel</h2>
+      <p class="tagline">Factory Worker Efficiency &middot; AI-Powered Reports</p>
+    </header>
+
+    <!-- Error Banner -->
+    <div id="error-banner" class="hidden"></div>
+
+    <!-- SECTION 2 UPLOAD PANEL -->
+    <main class="upload-panel" id="upload-panel">
+      <!-- Drag and Drop Zone -->
+      <div id="drop-zone" class="drop-zone">
+        <p class="drop-text">Drag and drop IMU .txt files here</p>
+        <p class="drop-subtext">or click to browse</p>
+        <input type="file" id="file-input" multiple accept=".txt" class="hidden" />
+      </div>
+      <div id="file-list" class="file-list hidden"></div>
+
+      <!-- Device Map Option -->
+      <div class="map-upload-box">
+        <label for="map-input" class="map-label">
+          <span class="btn-secondary">Upload device_map.csv (optional)</span>
+        </label>
+        <input type="file" id="map-input" accept=".csv" class="hidden" />
+        <span id="map-file-name" class="map-file-name">No map selected</span>
+      </div>
+
+      <!-- Action Button -->
+      <button id="btn-analyze" class="btn-primary">ANALYZE & GENERATE REPORT</button>
+
+      <!-- Progress Log -->
+      <div id="progress-log" class="progress-log hidden">
+        <div id="log-parse" class="log-item hidden">[ ] Parsing IMU data...</div>
+        <div id="log-score" class="log-item hidden">[ ] Scoring workers...</div>
+        <div id="log-agent" class="log-item hidden">[ ] Generating AI insights... <span class="spinner">⟳</span></div>
+        <div id="log-done"  class="log-item hidden">[ ] Report ready</div>
+      </div>
+    </main>
+
+    <!-- SECTION 3 RESULTS (Hidden until analysis done) -->
+    <section class="results-section hidden" id="results-section">
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-label">Total Workers</span>
+          <span class="stat-value" id="stat-total">-</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Avg Score</span>
+          <span class="stat-value" id="stat-avg">-</span>
+        </div>
+        <div class="stat-card border-red">
+          <span class="stat-label">RED</span>
+          <span class="stat-value" id="stat-red">-</span>
+        </div>
+        <div class="stat-card border-amber">
+          <span class="stat-label">AMBER</span>
+          <span class="stat-value" id="stat-amber">-</span>
+        </div>
+        <div class="stat-card border-green">
+          <span class="stat-label">GREEN</span>
+          <span class="stat-value" id="stat-green">-</span>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table id="worker-table">
+          <thead>
+            <tr>
+              <th>Worker</th>
+              <th>Score</th>
+              <th>Rank</th>
+              <th>Status</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="worker-tbody">
+            <!-- Rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <button id="btn-download" class="btn-download">
+        ⬇ DOWNLOAD EXCEL REPORT
+      </button>
+    </section>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

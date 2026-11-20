@@ -1,0 +1,11 @@
+device_id,worker_id,division,shift
+W001,W001,AssemblyA,Morning
+W002,W002,AssemblyA,Morning
+W003,W003,AssemblyB,Morning
+W004,W004,AssemblyB,Morning
+W005,W005,AssemblyB,Evening
+W006,W006,AssemblyC,Evening
+W007,W007,AssemblyC,Evening
+W008,W008,QualityCheck,Morning
+W009,W009,QualityCheck,Evening
+W010,W010,Packaging,Morning
